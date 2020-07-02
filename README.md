@@ -79,3 +79,32 @@ The goal I set out for this repo is to leverage CyberArk's vaulting capability t
         ./setup.sh
         ```
     3. 
+13. Setup Tower for need
+    1.  Project
+        1.  Name: Cyberark testing
+        2.  SCM URL: https://github.com/coreywan/ansible-cyberark-testing.git
+    2.  Inventory:
+        1.  Name: Main
+        2.  Source from Project:
+            1.  Cyberark Testing
+            2.  ./inventory
+    3.  Credentials:
+        1.  Cyberark
+            1.  Kind: CyberArk AIM Central Credential Provider Lookup
+            2.  CyberArk AIM URL: https://components.iam.com
+            3.  Application ID: Ansible
+        2.  Linux Root
+            1.  Kind: Machine
+            2.  Username: Root
+            3.  Password:
+                1.  Lookup: Cyberark
+                2.  Object Query: Safe=Linux;UserName=root
+                3.  Reason: automation
+    4.  Job Template:
+        1.  Name: Ping Test
+        2.  Job Type: Run
+        3.  Inventory: Main
+        4.  Project Cyberark testing
+        5.  Playbook: pb_cyberark_query_tower.yml
+        6.  Credentials: Linux Root
+14. Execute Ansible Tower Job
