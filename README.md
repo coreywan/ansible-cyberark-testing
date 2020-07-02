@@ -63,3 +63,19 @@ The goal I set out for this repo is to leverage CyberArk's vaulting capability t
         ```sh
         ansible-playbook ./pb_cyberark_query.yml
         ```
+12. Install Ansible Tower
+    1.  Patch the Server and Download Tower install files
+        ```
+        yum update -y
+        curl https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz --output ansible-tower-setup-latest.tar.gz
+        tar xvzf ansible-tower-setup-latest.tar.gz
+        reboot now
+        ```
+    2. Update the Inventory file to needs:
+        ```
+        cd ansible-towder-setup-*
+        vim inventory
+        #Once Saved executed the setup script
+        ./setup.sh
+        ```
+    3. 
