@@ -13,4 +13,4 @@
 
     - name: Output Password
       debug:
-        msg: "The Password is {{ root_info.Content }}"
+        msg: "The Password is {{ root_info.result.Content }}"
