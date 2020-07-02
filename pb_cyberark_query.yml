@@ -1,0 +1,10 @@
+- hosts: localhost
+  vars:
+  tasks:
+    - name: passing options to the lookup
+      debug: msg={{ lookup("cyberarkpassword", cyquery)}}
+      vars:
+        cyquery:
+          appid: "Ansible"
+          query: "safe=Linux;folder=root;object=root"
+          output: "Password,PassProps.UserName,PassProps.Address,PasswordChangeInProcess"
