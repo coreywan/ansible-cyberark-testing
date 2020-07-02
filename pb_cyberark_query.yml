@@ -1,10 +1,16 @@
 - hosts: localhost
+  gather_facts: false
   vars:
   tasks:
-    - name: passing options to the lookup
-      debug: msg={{ lookup("cyberarkpassword", cyquery)}}
-      vars:
-        cyquery:
-          appid: "Ansible"
-          query: "safe=Linux;folder=root;object=root"
-          output: "Password,PassProps.UserName,PassProps.Address,PasswordChangeInProcess"
+    - name: Grab Credential
+      cyberark.pas.cyberark_credential:
+        api_base_url: "https://components.iam.com"
+        app_id: Ansible
+        query: "UserName=root"
+        validate_certs: false
+      no_log: true
+      register: root_info
+
+    - name: Output Password
+      debug:
+        msg: "The Password is {{ root_info.Content }}"
